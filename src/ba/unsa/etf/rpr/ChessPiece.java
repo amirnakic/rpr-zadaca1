@@ -12,8 +12,8 @@ public abstract class ChessPiece {
         return position;
     }
 
-    ;
-
-    public abstract Color getColor();
+    public Color getColor() {
+        return color;
+    }
 
 }
