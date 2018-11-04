@@ -6,5 +6,6 @@ public abstract class ChessPiece {
     }
 
     public abstract String getPosition();
-    
+
+    public abstract Color getColor();
 }
