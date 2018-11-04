@@ -16,4 +16,6 @@ public abstract class ChessPiece {
         return color;
     }
 
+    public abstract void move(String position);
+
 }
