@@ -8,7 +8,11 @@ public abstract class ChessPiece {
         BLACK, WHITE
     }
 
-    public abstract String getPosition();
+    public String getPosition() {
+        return position;
+    }
+
+    ;
 
     public abstract Color getColor();
 
