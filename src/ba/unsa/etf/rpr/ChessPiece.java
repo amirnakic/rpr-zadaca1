@@ -18,4 +18,18 @@ public abstract class ChessPiece {
 
     public abstract void move(String position);
 
+    public boolean checkPosition(String position) {
+        if ((position.isEmpty()) || (position.length() != 2))
+            return false;
+        char prviZnak = position.charAt(0);
+        char drugiZnak = position.charAt(1);
+        if (Character.isWhitespace(prviZnak) || Character.isWhitespace(drugiZnak))
+            return false;
+        else if (Character.isLetter(drugiZnak) || Character.isDigit(prviZnak))
+            return false;
+        else if (("ABCDEFGHabcdefgh".indexOf(prviZnak) == -1) || ("12345678".indexOf(drugiZnak) == -1))
+            return false;
+        return true;
+    }
+
 }
