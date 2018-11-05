@@ -44,5 +44,5 @@ public abstract class ChessPiece {
         return true;
     }
 
-    public abstract void move(String position);
+    public abstract void move(String position) throws IllegalArgumentException, IllegalChessMoveException;
 }
