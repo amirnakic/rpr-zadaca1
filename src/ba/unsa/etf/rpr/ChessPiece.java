@@ -1,8 +1,8 @@
 package ba.unsa.etf.rpr;
 
 public abstract class ChessPiece {
-    protected String position;
-    protected Color color;
+    private String position;
+    private Color color;
 
     public static enum Color {
         BLACK, WHITE
