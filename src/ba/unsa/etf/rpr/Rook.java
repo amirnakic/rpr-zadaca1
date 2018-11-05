@@ -26,6 +26,8 @@ public class Rook extends ChessPiece {
 
     @Override
     public void move(String position) throws IllegalArgumentException, IllegalChessMoveException {
-
+        if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
+        else if (!isRooksMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
+        else setPosition(position);
     }
 }
