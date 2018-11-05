@@ -8,7 +8,7 @@ public class King extends ChessPiece {
     }
 
     public boolean isKingsMoveCorrect(String position) {
-        String currentPosition = this.getPosition();
+        String currentPosition = getPosition();
         ArrayList<Integer> list = new ArrayList<>(); //sadrži moguće razlike trenutne i nove pozicije za kralja
         list.add(0);
         list.add(1);
@@ -22,6 +22,6 @@ public class King extends ChessPiece {
     public void move(String position) throws IllegalArgumentException, IllegalChessMoveException {
         if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
         else if (!isKingsMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
-        else this.setPosition(position);
+        else setPosition(position);
     }
 }
