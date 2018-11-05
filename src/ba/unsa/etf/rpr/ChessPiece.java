@@ -8,7 +8,7 @@ public abstract class ChessPiece {
         BLACK, WHITE
     }
 
-    public ChessPiece(String position, Color color) throws IllegalArgumentException {
+    public ChessPiece(String position, ChessPiece.Color color) throws IllegalArgumentException {
         this.setPosition(position);
         this.setColor(color);
     }
