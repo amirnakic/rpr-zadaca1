@@ -4,6 +4,15 @@ public abstract class ChessPiece {
     protected String position;
     protected Color color;
 
+    public ChessPiece(String position, Color color) throws IllegalArgumentException {
+        if (!this.checkPosition(position))
+            throw new IllegalArgumentException("Parameter is incorrect.");
+        else {
+            this.position = position.toUpperCase();
+            this.color = color;
+        }
+    }
+
     public static enum Color {
         BLACK, WHITE
     }
@@ -15,8 +24,6 @@ public abstract class ChessPiece {
     public Color getColor() {
         return color;
     }
-
-    public abstract void move(String position);
 
     public boolean checkPosition(String position) {
         if ((position.isEmpty()) || (position.length() != 2))
@@ -32,4 +39,5 @@ public abstract class ChessPiece {
         return true;
     }
 
+    public abstract void move(String position);
 }
