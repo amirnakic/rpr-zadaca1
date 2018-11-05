@@ -4,17 +4,13 @@ public abstract class ChessPiece {
     protected String position;
     protected Color color;
 
-    public ChessPiece(String position, Color color) throws IllegalArgumentException {
-        if (!this.checkPosition(position))
-            throw new IllegalArgumentException("Parameter is incorrect.");
-        else {
-            this.position = position.toUpperCase();
-            this.color = color;
-        }
-    }
-
     public static enum Color {
         BLACK, WHITE
+    }
+
+    public ChessPiece(String position, Color color) throws IllegalArgumentException {
+        this.setPosition(position);
+        this.setColor(color);
     }
 
     public String getPosition() {
@@ -23,6 +19,15 @@ public abstract class ChessPiece {
 
     public Color getColor() {
         return color;
+    }
+
+    public void setPosition(String position) throws IllegalArgumentException {
+        if (!this.checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
+        else this.position = position;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public boolean checkPosition(String position) {
