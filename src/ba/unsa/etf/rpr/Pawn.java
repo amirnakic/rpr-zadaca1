@@ -7,9 +7,12 @@ public class Pawn extends ChessPiece {
 
     public boolean isPawnsMoveCorrect(String position) {
         String currentPosition = getPosition();
-        int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
-        int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
-        if (rezultat1 == 0 && rezultat2 == 1) return true;
+        int rezultat1 = currentPosition.charAt(0) - position.charAt(0);
+        int rezultat2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
+        if (rezultat1 == 0 && rezultat2 == -1)
+            return true; //iz bilo koje druge pozicije osim pocetne, pjeska se moze pomjerati samo za jedno mjesto iskljucivo prema naprijed
+        else if ((currentPosition.charAt(1) - '0') == 2 && rezultat1 == 0 && rezultat2 == -2)
+            return true; //iz pocetne pozicije pjesak moze da se pomjeri za dva mjesta iskljucivo prema naprijed
         return false;
     }
 
