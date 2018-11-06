@@ -20,5 +20,8 @@ public class Knight extends ChessPiece {
 
     @Override
     public void move(String position) throws IllegalArgumentException, IllegalChessMoveException {
+        if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
+        else if (!isKnightsMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
+        else setPosition(position);
     }
 }
