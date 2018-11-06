@@ -5,7 +5,7 @@ public class Queen extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isQueensMoveCorrect(String position) {
+    public boolean isQueensMoveCorrect(String position) { //kraljica se krece u svim mogucim pravcima za neogranicen broj polja i pritom ne moze preskakati figure
         String currentPosition = getPosition();
         int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
         int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));

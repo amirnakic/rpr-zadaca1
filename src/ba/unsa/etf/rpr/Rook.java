@@ -5,7 +5,7 @@ public class Rook extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isRooksMoveCorrect(String position) {
+    public boolean isRooksMoveCorrect(String position) { //top se krece u svim mogucim horizontalnim i vertikalnim pravcima za neogranicen broj polja i pritom ne moze preskakati figure
         String currentPosition = getPosition();
         int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
         int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));

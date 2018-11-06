@@ -7,7 +7,7 @@ public class Knight extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isKnightsMoveCorrect(String position) {
+    public boolean isKnightsMoveCorrect(String position) { //konj se moze kretati na nacin da njegova nova i stara pozicija formiraju slovo L na sve raspolozive nacine, pri cemu moze preskakati druge figure
         String currentPosition = getPosition();
         ArrayList<Integer> lista = new ArrayList<>();
         lista.add(1);

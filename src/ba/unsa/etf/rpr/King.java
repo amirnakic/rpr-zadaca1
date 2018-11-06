@@ -7,7 +7,7 @@ public class King extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isKingsMoveCorrect(String position) {
+    public boolean isKingsMoveCorrect(String position) { //kralj se moze kretati u svim mogucim pravcima za po jedno polje
         String currentPosition = getPosition();
         ArrayList<Integer> list = new ArrayList<>(); //sadrži moguće razlike trenutne i nove pozicije za kralja
         list.add(0);
