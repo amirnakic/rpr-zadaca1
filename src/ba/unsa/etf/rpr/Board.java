@@ -28,6 +28,10 @@ public class Board {
         }
     }
 
+    public List<ChessPiece> getAktivneFigure() {
+        return aktivneFigure;
+    }
+
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
     }
 }
