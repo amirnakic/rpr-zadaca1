@@ -1,9 +1,10 @@
 package ba.unsa.etf.rpr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<ChessPiece> aktivneFigure;
+    private List<ChessPiece> aktivneFigure = new ArrayList<>();
 
     public Board() {
         aktivneFigure.add(new Rook("A1", ChessPiece.Color.WHITE));
@@ -22,10 +23,22 @@ public class Board {
         aktivneFigure.add(new Queen("D8", ChessPiece.Color.BLACK));
         aktivneFigure.add(new King("E1", ChessPiece.Color.WHITE));
         aktivneFigure.add(new King("E8", ChessPiece.Color.BLACK));
-        for (int i = 0; i < 8; i++) {
-            aktivneFigure.add(new Pawn(String.valueOf('A' + i) + "2", ChessPiece.Color.WHITE));
-            aktivneFigure.add(new Pawn(String.valueOf('A' + i) + "7", ChessPiece.Color.BLACK));
-        }
+        aktivneFigure.add(new Pawn("A2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("B2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("C2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("D2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("E2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("F2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("G2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("H2", ChessPiece.Color.WHITE));
+        aktivneFigure.add(new Pawn("A7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("B7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("C7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("D7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("E7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("F7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("G7", ChessPiece.Color.BLACK));
+        aktivneFigure.add(new Pawn("H7", ChessPiece.Color.BLACK));
     }
 
     public List<ChessPiece> getAktivneFigure() {
@@ -33,5 +46,6 @@ public class Board {
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
+
     }
 }
