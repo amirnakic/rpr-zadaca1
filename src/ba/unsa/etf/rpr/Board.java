@@ -52,19 +52,27 @@ public class Board {
             if (figure.getClass() == type && figure.getColor() == color) {
                 if (figure instanceof King || figure instanceof Knight) {
                     figure.move(position);
+                } else if (figure instanceof Queen) {
+                    figure.move(position);
+                    List<String> positions = ((Queen) figure).getQueensPositionsWhileMoving(position);
                     for (ChessPiece testFigure : getAktivneFigure()) {
-                        if (testFigure.getPosition() == position) {
-                            if (testFigure.getColor() == color) {
-                                figure.setPosition(oldPosition);
-                                throw new IllegalChessMoveException("Parameter is incorrect.");
-                            } else {
-                                getAktivneFigure().remove(testFigure);
-                                return;
-                            }
+                        if (positions.contains(testFigure.getPosition()))
+                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    }
+                }
+                for (ChessPiece testFigure : getAktivneFigure()) {
+                    if (testFigure.getPosition() == position) {
+                        if (testFigure.getColor() == color) {
+                            figure.setPosition(oldPosition);
+                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                        } else {
+                            getAktivneFigure().remove(testFigure);
+                            return;
                         }
                     }
                 }
-            } else throw new IllegalChessMoveException("Parameter is incorrect.");
+            }
         }
+        throw new IllegalChessMoveException("Parameter is incorrect.");
     }
 }
