@@ -46,6 +46,25 @@ public class Board {
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
-
+        for (int i = 0; i < getAktivneFigure().size(); i++) {
+            ChessPiece figure = getAktivneFigure().get(i);
+            String oldPosition = figure.getPosition();
+            if (figure.getClass() == type && figure.getColor() == color) {
+                if (figure instanceof King) {
+                    figure.move(position);
+                    for (ChessPiece testFigure : getAktivneFigure()) {
+                        if (testFigure.getPosition() == position) {
+                            if (testFigure.getColor() == color) {
+                                figure.setPosition(oldPosition);
+                                throw new IllegalChessMoveException("Parameter is incorrect.");
+                            } else {
+                                getAktivneFigure().remove(testFigure);
+                                return;
+                            }
+                        }
+                    }
+                }
+            } else throw new IllegalChessMoveException("Parameter is incorrect.");
+        }
     }
 }
