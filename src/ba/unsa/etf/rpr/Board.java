@@ -28,4 +28,7 @@ public class Board {
             aktivneCrneFigure.add(new Pawn(String.valueOf('A' + i) + "7", ChessPiece.Color.BLACK));
         }
     }
+
+    public void move(Class type, ChessPiece.Color color, String position) throws IllegalChessMoveException {
+    }
 }
