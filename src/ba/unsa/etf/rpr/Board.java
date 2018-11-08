@@ -50,7 +50,7 @@ public class Board {
             ChessPiece figure = getAktivneFigure().get(i);
             String oldPosition = figure.getPosition();
             if (figure.getClass() == type && figure.getColor() == color) {
-                if (figure instanceof King) {
+                if (figure instanceof King || figure instanceof Knight) {
                     figure.move(position);
                     for (ChessPiece testFigure : getAktivneFigure()) {
                         if (testFigure.getPosition() == position) {
