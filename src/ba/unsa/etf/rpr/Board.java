@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Board {
@@ -57,9 +58,13 @@ public class Board {
     }
 
     public void removeFigure(String position) {
-        for (ChessPiece testFigure : getActiveFigures())
-            if (testFigure.getPosition().equals(position))
-                testFigure = null;
+        List<ChessPiece> tempList = new ArrayList<>();
+        for (ChessPiece figure : getActiveFigures())
+            if (figure.getPosition().equals(position) == false)
+                tempList.add(figure);
+        getActiveFigures().clear();
+        getActiveFigures().addAll(tempList);
+        tempList.clear();
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
