@@ -74,6 +74,11 @@ public class Board {
                         if (positions.contains(testFigure.getPosition()))
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
+                } else if (figure instanceof Pawn) {
+                    if ((oldPosition.charAt(0) - position.charAt(0)) == 0) {
+                        figure.move(position);
+                    } else ((Pawn) figure).eat(position);
+
                 }
                 for (ChessPiece testFigure : getAktivneFigure()) {
                     if (testFigure.getPosition() == position) {
