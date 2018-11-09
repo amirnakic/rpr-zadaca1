@@ -45,6 +45,16 @@ public class Board {
         return activeFigures;
     }
 
+    public boolean isEatingMoveAvailableForFigure(String position, ChessPiece.Color color) {
+        for (ChessPiece testFigure : getActiveFigures()) {
+            if (testFigure.getPosition() == position) {
+                if (testFigure.getColor() == color) {
+                    return false;
+                } else return true;
+            }
+        }
+    }
+
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
         for (int i = 0; i < getActiveFigures().size(); i++) {
             ChessPiece figure = getActiveFigures().get(i);
@@ -75,10 +85,10 @@ public class Board {
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
                 } else if (figure instanceof Pawn) {
-                    if ((oldPosition.charAt(0) - position.charAt(0)) == 0) {
+                    if (((Pawn) figure).isPawnsVerticalMoveCorrect(position))
                         figure.move(position);
-                    } else ((Pawn) figure).eat(position);
-
+                    else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position))
+                        ((Pawn) figure).eat(position);
                 }
                 for (ChessPiece testFigure : getActiveFigures()) {
                     if (testFigure.getPosition() == position) {
