@@ -7,6 +7,7 @@ public class Pawn extends ChessPiece {
 
     public boolean isPawnsMoveCorrect(String position) {
         String currentPosition = getPosition();
+        position = position.toUpperCase();
         int rezultat1 = currentPosition.charAt(0) - position.charAt(0);
         int rezultat2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
         if (rezultat1 == 0 && rezultat2 == -1)

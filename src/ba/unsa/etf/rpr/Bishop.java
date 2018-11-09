@@ -10,6 +10,7 @@ public class Bishop extends ChessPiece {
 
     public boolean isBishopsMoveCorrect(String position) { //lovac se krece u svim mogucim dijagonalnim pravcima za neogranicen broj polja i pritom ne moze preskakati druge figure
         String currentPosition = getPosition();
+        position = position.toUpperCase();
         int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
         int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
         if (rezultat1 == rezultat2) return true;

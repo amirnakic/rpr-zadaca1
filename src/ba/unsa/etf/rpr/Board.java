@@ -49,6 +49,7 @@ public class Board {
         for (int i = 0; i < getAktivneFigure().size(); i++) {
             ChessPiece figure = getAktivneFigure().get(i);
             String oldPosition = figure.getPosition();
+            position = position.toUpperCase();
             if (figure.getClass() == type && figure.getColor() == color) {
                 if (figure instanceof King || figure instanceof Knight) {
                     figure.move(position);
@@ -62,6 +63,13 @@ public class Board {
                 } else if (figure instanceof Rook) {
                     figure.move(position);
                     List<String> positions = ((Rook) figure).getRooksPositionsWhileMoving(position);
+                    for (ChessPiece testFigure : getAktivneFigure()) {
+                        if (positions.contains(testFigure.getPosition()))
+                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    }
+                } else if (figure instanceof Bishop) {
+                    figure.move(position);
+                    List<String> positions = ((Bishop) figure).getBishopsPositionsWhileMoving(position);
                     for (ChessPiece testFigure : getAktivneFigure()) {
                         if (positions.contains(testFigure.getPosition()))
                             throw new IllegalChessMoveException("Parameter is incorrect.");
