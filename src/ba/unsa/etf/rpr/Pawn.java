@@ -6,14 +6,29 @@ public class Pawn extends ChessPiece {
     }
 
     public void eat(String position) throws IllegalArgumentException, IllegalChessMoveException {
-        if (!isPawnsMoveCorrect(position)) throw new IllegalArgumentException("Parameter is incorrect.");
+        if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
         String currentPosition = getPosition();
         position = position.toUpperCase();
         int result1 = currentPosition.charAt(0) - position.charAt(0);
         int result2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
-        if (result1 == -1 && result2 == -1) setPosition(position);
-        else if (result1 == 1 && result2 == -1) setPosition(position);
-        else throw new IllegalChessMoveException("Parameter is incorrect.");
+        if (getColor() == Color.WHITE) {
+            if (result1 == -1 && result2 == -1) {
+                setPosition(position);
+                return;
+            } else if (result1 == 1 && result2 == -1) {
+                setPosition(position);
+                return;
+            }
+        } else {
+            if (result1 == 1 && result2 == 1) {
+                setPosition(position);
+                return;
+            } else if (result1 == -1 && result2 == 1) {
+                setPosition(position);
+                return;
+            }
+        }
+        throw new IllegalChessMoveException("Parameter is incorrect.");
     }
 
     public boolean isPawnsMoveCorrect(String position) {
