@@ -106,4 +106,8 @@ public class Board {
             }
         throw new IllegalArgumentException("Parameter is incorrect.");
     }
+
+    public boolean isCheck(ChessPiece.Color color) {
+        return true;
+    }
 }
