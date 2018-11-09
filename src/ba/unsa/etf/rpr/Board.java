@@ -45,18 +45,15 @@ public class Board {
         return activeFigures;
     }
 
-    public boolean removeFigureIfEatingMoveIsCorrect(String position, ChessPiece.Color color) {
+    public int isMoveEatingMove(String position, ChessPiece.Color color) {
         for (ChessPiece testFigure : getActiveFigures()) {
             if (testFigure.getPosition() == position) {
                 if (testFigure.getColor() == color) {
-                    return false;
-                } else {
-                    getActiveFigures().remove(testFigure);
-                    return true;
-                }
+                    return -1; //vraca -1 ako nije rijec o eatingMove-u i ako treba baciti izuzetak
+                } else return 1; //vraca 1 ako je rijec o eatingMove-u
             }
         }
-        return false;
+        return 0; //vraca 0 ako je rijec o obicnom Move-u
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
@@ -89,24 +86,14 @@ public class Board {
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
                 } else if (figure instanceof Pawn) {
-                    if (!removeFigureIfEatingMoveIsCorrect(position, figure.getColor()))
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
                         throw new IllegalChessMoveException("Parameter is incorrect.");
                     else {
                         if (((Pawn) figure).isPawnsVerticalMoveCorrect(position))
                             figure.move(position);
-                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position))
+                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position)) {
+                            //removeFigureIfEatingMoveIsCorrect(position, figure.getColor());
                             ((Pawn) figure).eat(position);
-
-                    }
-                }
-                for (ChessPiece testFigure : getActiveFigures()) {
-                    if (testFigure.getPosition() == position) {
-                        if (testFigure.getColor() == color) {
-                            figure.setPosition(oldPosition);
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
-                        } else {
-                            getActiveFigures().remove(testFigure);
-                            return;
                         }
                     }
                 }
