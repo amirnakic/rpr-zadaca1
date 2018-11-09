@@ -31,7 +31,7 @@ public class Pawn extends ChessPiece {
         throw new IllegalChessMoveException("Parameter is incorrect.");
     }
 
-    public boolean isPawnsMoveCorrect(String position) {
+    public boolean isPawnsVerticalMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
         int result1 = currentPosition.charAt(0) - position.charAt(0);
@@ -53,7 +53,7 @@ public class Pawn extends ChessPiece {
     @Override
     public void move(String position) throws IllegalArgumentException, IllegalChessMoveException {
         if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
-        else if (!isPawnsMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
+        else if (!isPawnsVerticalMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
         else setPosition(position);
     }
 }
