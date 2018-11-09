@@ -10,12 +10,12 @@ public class Knight extends ChessPiece {
     public boolean isKnightsMoveCorrect(String position) { //konj se moze kretati na nacin da njegova nova i stara pozicija formiraju slovo L na sve raspolozive nacine, pri cemu moze preskakati druge figure
         String currentPosition = getPosition();
         position = position.toUpperCase();
-        ArrayList<Integer> lista = new ArrayList<>();
-        lista.add(1);
-        lista.add(2);
-        int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
-        int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
-        if (rezultat1 != rezultat2 && lista.contains(rezultat1) && lista.contains(rezultat2)) return true;
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        int result1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
+        int result2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
+        if (result1 != result2 && list.contains(result1) && list.contains(result2)) return true;
         return false;
     }
 

@@ -9,21 +9,21 @@ public class Pawn extends ChessPiece {
         if (!isPawnsMoveCorrect(position)) throw new IllegalArgumentException("Parameter is incorrect.");
         String currentPosition = getPosition();
         position = position.toUpperCase();
-        int rezultat1 = currentPosition.charAt(0) - position.charAt(0);
-        int rezultat2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
-        if (rezultat1 == -1 && rezultat2 == -1) setPosition(position);
-        else if (rezultat1 == 1 && rezultat2 == -1) setPosition(position);
+        int result1 = currentPosition.charAt(0) - position.charAt(0);
+        int result2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
+        if (result1 == -1 && result2 == -1) setPosition(position);
+        else if (result1 == 1 && result2 == -1) setPosition(position);
         else throw new IllegalChessMoveException("Parameter is incorrect.");
     }
 
     public boolean isPawnsMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
-        int rezultat1 = currentPosition.charAt(0) - position.charAt(0);
-        int rezultat2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
-        if (rezultat1 == 0 && rezultat2 == -1)
+        int result1 = currentPosition.charAt(0) - position.charAt(0);
+        int result2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
+        if (result1 == 0 && result2 == -1)
             return true; //iz bilo koje druge pozicije osim pocetne, pjeska se moze pomjerati samo za jedno mjesto iskljucivo prema naprijed
-        else if ((currentPosition.charAt(1) - '0') == 2 && rezultat1 == 0 && rezultat2 == -2)
+        else if ((currentPosition.charAt(1) - '0') == 2 && result1 == 0 && result2 == -2)
             return true; //iz pocetne pozicije pjesak moze da se pomjeri za dva mjesta iskljucivo prema naprijed
         return false;
     }

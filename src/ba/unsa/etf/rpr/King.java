@@ -13,9 +13,9 @@ public class King extends ChessPiece {
         ArrayList<Integer> list = new ArrayList<>(); //sadrži moguće razlike trenutne i nove pozicije za kralja
         list.add(0);
         list.add(1);
-        int rezultat1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
-        int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
-        if (list.contains(rezultat1) && list.contains(rezultat2)) return true;
+        int result1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
+        int result2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
+        if (list.contains(result1) && list.contains(result2)) return true;
         return false;
     }
 

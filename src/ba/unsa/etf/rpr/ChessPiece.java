@@ -33,13 +33,13 @@ public abstract class ChessPiece {
     public boolean checkPosition(String position) {
         if ((position.isEmpty()) || (position.length() != 2))
             return false;
-        char prviZnak = position.charAt(0);
-        char drugiZnak = position.charAt(1);
-        if (Character.isWhitespace(prviZnak) || Character.isWhitespace(drugiZnak))
+        char first = position.charAt(0);
+        char second = position.charAt(1);
+        if (Character.isWhitespace(first) || Character.isWhitespace(second))
             return false;
-        else if (Character.isLetter(drugiZnak) || Character.isDigit(prviZnak))
+        else if (Character.isLetter(second) || Character.isDigit(first))
             return false;
-        else if (("ABCDEFGHabcdefgh".indexOf(prviZnak) == -1) || ("12345678".indexOf(drugiZnak) == -1))
+        else if (("ABCDEFGHabcdefgh".indexOf(first) == -1) || ("12345678".indexOf(second) == -1))
             return false;
         return true;
     }
