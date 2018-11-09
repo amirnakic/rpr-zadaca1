@@ -45,14 +45,18 @@ public class Board {
         return activeFigures;
     }
 
-    public boolean isEatingMoveAvailableForFigure(String position, ChessPiece.Color color) {
+    public boolean removeFigureIfEatingMoveIsCorrect(String position, ChessPiece.Color color) {
         for (ChessPiece testFigure : getActiveFigures()) {
             if (testFigure.getPosition() == position) {
                 if (testFigure.getColor() == color) {
                     return false;
-                } else return true;
+                } else {
+                    getActiveFigures().remove(testFigure);
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
@@ -85,10 +89,15 @@ public class Board {
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
                 } else if (figure instanceof Pawn) {
-                    if (((Pawn) figure).isPawnsVerticalMoveCorrect(position))
-                        figure.move(position);
-                    else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position))
-                        ((Pawn) figure).eat(position);
+                    if (!removeFigureIfEatingMoveIsCorrect(position, figure.getColor()))
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else {
+                        if (((Pawn) figure).isPawnsVerticalMoveCorrect(position))
+                            figure.move(position);
+                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position))
+                            ((Pawn) figure).eat(position);
+
+                    }
                 }
                 for (ChessPiece testFigure : getActiveFigures()) {
                     if (testFigure.getPosition() == position) {
