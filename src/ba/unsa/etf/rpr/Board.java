@@ -84,11 +84,17 @@ public class Board {
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
                 } else if (figure instanceof Bishop) {
-                    figure.move(position);
-                    List<String> positions = ((Bishop) figure).getBishopsPositionsWhileMoving(position);
-                    for (ChessPiece testFigure : getActiveFigures()) {
-                        if (positions.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else if (((Bishop) figure).isBishopsMoveCorrect(position)) {
+                        if (isMoveEatingMove(position, figure.getColor()) == 0) {
+                            figure.move(position);
+                            return;
+                        } else {
+                            removeFigure(position);
+                            figure.move(position);
+                            return;
+                        }
                     }
                 } else if (figure instanceof Pawn) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)

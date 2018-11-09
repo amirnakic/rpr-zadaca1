@@ -5,15 +5,15 @@ public class Main {
          Board b = new Board();
          try {
              System.out.println("nije");
-             b.move(Pawn.class, ChessPiece.Color.WHITE, "E4");
+             b.move(Pawn.class, ChessPiece.Color.WHITE, "d4");
              System.out.println("nije");
-             b.move(Pawn.class, ChessPiece.Color.WHITE, "E5");
+             b.move(Bishop.class, ChessPiece.Color.WHITE, "e3");
              System.out.println("nije");
-             b.move(Pawn.class, ChessPiece.Color.WHITE, "E6");
+             b.move(Bishop.class, ChessPiece.Color.WHITE, "b6");
              System.out.println("nije");
-             b.move(Pawn.class, ChessPiece.Color.WHITE, "D7");
+             b.move(Bishop.class, ChessPiece.Color.WHITE, "c7");
              System.out.println("nije");
-             b.move(Pawn.class, ChessPiece.Color.WHITE, "C8");
+             b.move(Bishop.class, ChessPiece.Color.WHITE, "b8");
              System.out.println("nije");
          } catch (Exception e) {
              System.out.println(e.getMessage());
