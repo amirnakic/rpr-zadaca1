@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bishop extends ChessPiece {
     public Bishop(String position, ChessPiece.Color color) {
         super(position, color);
@@ -11,6 +14,46 @@ public class Bishop extends ChessPiece {
         int rezultat2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
         if (rezultat1 == rezultat2) return true;
         return false;
+    }
+
+    public List<String> getBishopsPositionsWhileMoving(String position) {
+        List<String> result = new ArrayList<>();
+        String currentPosition = getPosition();
+        position = position.toUpperCase();
+        int rezultat1 = position.charAt(0) - currentPosition.charAt(0);
+        int rezultat2 = (position.charAt(1) - '0') - (currentPosition.charAt(1) - '0');
+        if (Math.abs(rezultat1) == Math.abs(rezultat2)) {
+            if (rezultat1 > 0 && rezultat2 > 0) {
+                for (int i = 1; i < rezultat1; i++) {
+                    Character c1 = (char) (currentPosition.charAt(0) + i);
+                    int c2 = currentPosition.charAt(1) - '0' + i;
+                    String temp = c1.toString() + c2;
+                    result.add(temp);
+                }
+            } else if (rezultat1 > 0 && rezultat2 < 0) {
+                for (int i = 1; i < rezultat1; i++) {
+                    Character c1 = (char) (currentPosition.charAt(0) + i);
+                    int c2 = currentPosition.charAt(1) - '0' - i;
+                    String temp = c1.toString() + c2;
+                    result.add(temp);
+                }
+            } else if (rezultat1 < 0 && rezultat2 < 0) {
+                for (int i = 1; i < Math.abs(rezultat1); i++) {
+                    Character c1 = (char) (currentPosition.charAt(0) - i);
+                    int c2 = currentPosition.charAt(1) - '0' - i;
+                    String temp = c1.toString() + c2;
+                    result.add(temp);
+                }
+            } else {
+                for (int i = 1; i < Math.abs(rezultat1); i++) {
+                    Character c1 = (char) (currentPosition.charAt(0) - i);
+                    int c2 = currentPosition.charAt(1) - '0' + i;
+                    String temp = c1.toString() + c2;
+                    result.add(temp);
+                }
+            }
+        }
+        return result;
     }
 
     @Override
