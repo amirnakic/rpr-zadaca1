@@ -95,4 +95,8 @@ public class Board {
         }
         throw new IllegalChessMoveException("Parameter is incorrect.");
     }
+
+    void move(String oldPosition, String newPosition) {
+        
+    }
 }
