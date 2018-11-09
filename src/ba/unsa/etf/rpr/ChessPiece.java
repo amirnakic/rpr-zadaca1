@@ -23,7 +23,7 @@ public abstract class ChessPiece {
 
     public void setPosition(String position) throws IllegalArgumentException {
         if (!this.checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
-        else this.position = position;
+        else this.position = position.toUpperCase();
     }
 
     public void setColor(Color color) {

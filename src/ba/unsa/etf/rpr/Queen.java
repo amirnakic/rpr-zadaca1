@@ -21,6 +21,7 @@ public class Queen extends ChessPiece {
     public List<String> getQueensPositionsWhileMoving(String position) {
         List<String> result = new ArrayList<>();
         String currentPosition = getPosition();
+        position = position.toUpperCase();
         int rezultat1 = position.charAt(0) - currentPosition.charAt(0);
         int rezultat2 = (position.charAt(1) - '0') - (currentPosition.charAt(1) - '0');
         if (Math.abs(rezultat1) == Math.abs(rezultat2)) {
