@@ -59,6 +59,13 @@ public class Board {
                         if (positions.contains(testFigure.getPosition()))
                             throw new IllegalChessMoveException("Parameter is incorrect.");
                     }
+                } else if (figure instanceof Rook) {
+                    figure.move(position);
+                    List<String> positions = ((Rook) figure).getRooksPositionsWhileMoving(position);
+                    for (ChessPiece testFigure : getAktivneFigure()) {
+                        if (positions.contains(testFigure.getPosition()))
+                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    }
                 }
                 for (ChessPiece testFigure : getAktivneFigure()) {
                     if (testFigure.getPosition() == position) {
