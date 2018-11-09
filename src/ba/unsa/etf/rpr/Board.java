@@ -47,13 +47,19 @@ public class Board {
 
     public int isMoveEatingMove(String position, ChessPiece.Color color) {
         for (ChessPiece testFigure : getActiveFigures()) {
-            if (testFigure.getPosition() == position) {
+            if (testFigure.getPosition().equals(position)) {
                 if (testFigure.getColor() == color) {
                     return -1; //vraca -1 ako nije rijec o eatingMove-u i ako treba baciti izuzetak
                 } else return 1; //vraca 1 ako je rijec o eatingMove-u
             }
         }
         return 0; //vraca 0 ako je rijec o obicnom Move-u
+    }
+
+    public void removeFigure(String position) {
+        for (ChessPiece testFigure : getActiveFigures())
+            if (testFigure.getPosition().equals(position))
+                getActiveFigures().remove(testFigure);
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
@@ -89,10 +95,10 @@ public class Board {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
                         throw new IllegalChessMoveException("Parameter is incorrect.");
                     else {
-                        if (((Pawn) figure).isPawnsVerticalMoveCorrect(position))
+                        if (((Pawn) figure).isPawnsVerticalMoveCorrect(position) && isMoveEatingMove(position, figure.getColor()) == 0)
                             figure.move(position);
-                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position)) {
-                            //removeFigureIfEatingMoveIsCorrect(position, figure.getColor());
+                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position) && isMoveEatingMove(position, figure.getColor()) == 1) {
+                            removeFigure(position);
                             ((Pawn) figure).eat(position);
                         }
                     }
