@@ -47,6 +47,7 @@ public class Board {
     }
 
     public int isMoveEatingMove(String position, ChessPiece.Color color) {
+        position = position.toUpperCase();
         for (ChessPiece testFigure : getActiveFigures()) {
             if (testFigure.getPosition().equals(position)) {
                 if (testFigure.getColor() == color) {
@@ -58,13 +59,12 @@ public class Board {
     }
 
     public void removeFigure(String position) {
-        List<ChessPiece> tempList = new ArrayList<>();
+        position = position.toUpperCase();
         for (ChessPiece figure : getActiveFigures())
-            if (figure.getPosition().equals(position) == false)
-                tempList.add(figure);
-        getActiveFigures().clear();
-        getActiveFigures().addAll(tempList);
-        tempList.clear();
+            if (figure.getPosition().equals(position)) {
+                getActiveFigures().remove(figure);
+                return;
+            }
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {

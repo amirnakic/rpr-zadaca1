@@ -45,12 +45,4 @@ public abstract class ChessPiece {
     }
 
     public abstract void move(String position) throws IllegalArgumentException, IllegalChessMoveException;
-
-    @Override
-    public boolean equals(Object o) {
-        ChessPiece figure = (ChessPiece) o;
-        if (figure.getPosition().equals(((ChessPiece) o).getPosition()) && figure.getColor() == ((ChessPiece) o).getColor())
-            return true;
-        return false;
-    }
 }
