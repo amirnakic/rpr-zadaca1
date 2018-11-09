@@ -96,7 +96,14 @@ public class Board {
         throw new IllegalChessMoveException("Parameter is incorrect.");
     }
 
-    void move(String oldPosition, String newPosition) {
-        
+    public void move(String oldPosition, String newPosition) throws IllegalArgumentException, IllegalChessMoveException {
+        oldPosition = oldPosition.toUpperCase();
+        newPosition = newPosition.toUpperCase();
+        for (ChessPiece figure : getAktivneFigure())
+            if (figure.getPosition().equals(oldPosition)) {
+                this.move(figure.getClass(), figure.getColor(), newPosition);
+                return;
+            }
+        throw new IllegalArgumentException("Parameter is incorrect.");
     }
 }
