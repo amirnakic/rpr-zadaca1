@@ -17,20 +17,15 @@ public class Pawn extends ChessPiece {
         int result1 = currentPosition.charAt(0) - position.charAt(0);
         int result2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
         if (getColor() == Color.WHITE) {
-            if (result1 == -1 && result2 == -1) {
+            if (result1 == -1 && result2 == -1)
                 return true;
-            } else if (result1 == 1 && result2 == -1) {
-                setPosition(position);
+            else if (result1 == 1 && result2 == -1)
                 return true;
-            }
         } else {
-            if (result1 == 1 && result2 == 1) {
-                setPosition(position);
+            if (result1 == 1 && result2 == 1)
                 return true;
-            } else if (result1 == -1 && result2 == 1) {
-                setPosition(position);
+            else if (result1 == -1 && result2 == 1)
                 return true;
-            }
         }
         return false;
     }

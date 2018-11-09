@@ -7,22 +7,6 @@ public class Board {
     private List<ChessPiece> activeFigures = new ArrayList<>();
 
     public Board() {
-        activeFigures.add(new Rook("A1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Rook("H1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Rook("A8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Rook("H8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Knight("B1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Knight("G1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Knight("B8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Knight("G8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Bishop("C1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Bishop("F1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Bishop("C8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Bishop("F8", ChessPiece.Color.BLACK));
-        activeFigures.add(new Queen("D1", ChessPiece.Color.WHITE));
-        activeFigures.add(new Queen("D8", ChessPiece.Color.BLACK));
-        activeFigures.add(new King("E1", ChessPiece.Color.WHITE));
-        activeFigures.add(new King("E8", ChessPiece.Color.BLACK));
         activeFigures.add(new Pawn("A2", ChessPiece.Color.WHITE));
         activeFigures.add(new Pawn("B2", ChessPiece.Color.WHITE));
         activeFigures.add(new Pawn("C2", ChessPiece.Color.WHITE));
@@ -39,6 +23,22 @@ public class Board {
         activeFigures.add(new Pawn("F7", ChessPiece.Color.BLACK));
         activeFigures.add(new Pawn("G7", ChessPiece.Color.BLACK));
         activeFigures.add(new Pawn("H7", ChessPiece.Color.BLACK));
+        activeFigures.add(new Rook("A1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Rook("H1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Rook("A8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Rook("H8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Knight("B1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Knight("G1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Knight("B8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Knight("G8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Bishop("C1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Bishop("F1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Bishop("C8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Bishop("F8", ChessPiece.Color.BLACK));
+        activeFigures.add(new Queen("D1", ChessPiece.Color.WHITE));
+        activeFigures.add(new Queen("D8", ChessPiece.Color.BLACK));
+        activeFigures.add(new King("E1", ChessPiece.Color.WHITE));
+        activeFigures.add(new King("E8", ChessPiece.Color.BLACK));
     }
 
     public List<ChessPiece> getActiveFigures() {
@@ -59,13 +59,12 @@ public class Board {
     public void removeFigure(String position) {
         for (ChessPiece testFigure : getActiveFigures())
             if (testFigure.getPosition().equals(position))
-                getActiveFigures().remove(testFigure);
+                testFigure = null;
     }
 
     public void move(Class type, ChessPiece.Color color, String position) throws IllegalArgumentException, IllegalChessMoveException {
         for (int i = 0; i < getActiveFigures().size(); i++) {
             ChessPiece figure = getActiveFigures().get(i);
-            String oldPosition = figure.getPosition();
             position = position.toUpperCase();
             if (figure.getClass() == type && figure.getColor() == color) {
                 if (figure instanceof King || figure instanceof Knight) {
@@ -95,11 +94,13 @@ public class Board {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
                         throw new IllegalChessMoveException("Parameter is incorrect.");
                     else {
-                        if (((Pawn) figure).isPawnsVerticalMoveCorrect(position) && isMoveEatingMove(position, figure.getColor()) == 0)
+                        if (((Pawn) figure).isPawnsVerticalMoveCorrect(position) && (isMoveEatingMove(position, figure.getColor()) == 0)) {
                             figure.move(position);
-                        else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position) && isMoveEatingMove(position, figure.getColor()) == 1) {
+                            return;
+                        } else if (((Pawn) figure).isPawnsDiagonalMoveCorrect(position) && (isMoveEatingMove(position, figure.getColor()) == 1)) {
                             removeFigure(position);
                             ((Pawn) figure).eat(position);
+                            return;
                         }
                     }
                 }
