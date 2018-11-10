@@ -1,46 +1,85 @@
 package ba.unsa.etf.rpr;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Program {
-    public boolean isInputCorrect(String input) {
-        List<Integer> correctNumberOfCharsInInput = new ArrayList<>();
-        correctNumberOfCharsInInput.add(1);
-        correctNumberOfCharsInInput.add(2);
-        correctNumberOfCharsInInput.add(3);
-        if (input.isEmpty() || !correctNumberOfCharsInInput.contains(input.length()))
-            return false;
-        char first, second, third;
-        if (input.length() == 1 && !input.equals("X"))
-            return false;
-        else if (input.length() == 2) {
-            second = input.charAt(0);
-            third = input.charAt(1);
-        } else {
-            first = input.charAt(0);
-            second = input.charAt(1);
-            third = input.charAt(2);
-            if (Character.isDigit(first))
-                return false;
-            else if ("KQRBN".indexOf(first) == -1)
-                return false;
+    public static void main(String[] args) {
+        Board b = new Board();
+        String input = "", first = "", position = "";
+        boolean correct = false;
+        Scanner s = new Scanner(System.in);
+        while (!correct) {
+            boolean correct1 = false;
+            while (!correct1) {
+                System.out.println("White move: ");
+                input = s.nextLine();
+                if (input.equals("X")) {
+                    correct1 = true;
+                    correct = true;
+                } else if (input.length() == 3) {
+                    first = Character.toString(input.charAt(0));
+                    if ("KQRBN".contains(first)) {
+                        position = Character.toString(input.charAt(1)) + Character.toString(input.charAt(2));
+                        if (first.equals("K")) {
+                            try {
+                                b.move(King.class, ChessPiece.Color.WHITE, position);
+                                if (b.isCheck(ChessPiece.Color.BLACK))
+                                    System.out.println("CHECK!!!");
+                                correct1 = true;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        } else if (first.equals("Q")) {
+                            try {
+                                b.move(Queen.class, ChessPiece.Color.WHITE, position);
+                                if (b.isCheck(ChessPiece.Color.BLACK))
+                                    System.out.println("CHECK!!!");
+                                correct1 = true;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        } else if (first.equals("R")) {
+                            try {
+                                b.move(Rook.class, ChessPiece.Color.WHITE, position);
+                                if (b.isCheck(ChessPiece.Color.BLACK))
+                                    System.out.println("CHECK!!!");
+                                correct1 = true;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        } else if (first.equals("B")) {
+                            try {
+                                b.move(Bishop.class, ChessPiece.Color.WHITE, position);
+                                if (b.isCheck(ChessPiece.Color.BLACK))
+                                    System.out.println("CHECK!!!");
+                                correct1 = true;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        } else if (first.equals("N")) {
+                            try {
+                                b.move(Knight.class, ChessPiece.Color.WHITE, position);
+                                if (b.isCheck(ChessPiece.Color.BLACK))
+                                    System.out.println("CHECK!!!");
+                                correct1 = true;
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                    } else System.out.println("Illegal move.");
+                } else if (input.length() == 2) {
+                    try {
+                        b.move(Pawn.class, ChessPiece.Color.WHITE, input);
+                        if (b.isCheck(ChessPiece.Color.BLACK))
+                            System.out.println("CHECK!!!");
+                        correct1 = true;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    System.out.println("Illegal move.");
+                }
+            }
         }
-        if (Character.isWhitespace(second) || Character.isWhitespace(third))
-            return false;
-        else if (Character.isDigit(second) || Character.isLetter(third))
-            return false;
-        else if ("ABCDEFGHabcdefgh".indexOf(second) == -1 || "12345678".indexOf(third) == -1)
-            return false;
-        return true;
     }
-     public static void main(String[] args) {
-         /*Board b = new Board();
-         String input = "";
-         boolena correct = false;
-         while(true) {
-              System.out.println("White move: ");
-              while(correct)
-         }*/
-     }
 }

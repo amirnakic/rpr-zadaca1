@@ -180,6 +180,7 @@ public class Board {
     }
 
     public boolean isCheck(ChessPiece.Color color) {
+        boolean canItBeCheck = false;
         String currentPositionOfKing = "";
         for (ChessPiece figure : getActiveFigures()) {
             if (figure instanceof King) {
@@ -192,22 +193,31 @@ public class Board {
             if (figure instanceof Knight && (figure.getColor() != color)) {
                 if (((Knight) figure).isKnightsMoveCorrect(currentPositionOfKing)) return true;
             } else if (figure instanceof Bishop && (figure.getColor() != color)) {
-                if (((Bishop) figure).isBishopsMoveCorrect(currentPositionOfKing))
+                if (((Bishop) figure).isBishopsMoveCorrect(currentPositionOfKing)) {
                     temp = ((Bishop) figure).getBishopsPositionsWhileMoving(currentPositionOfKing);
+                    canItBeCheck = true;
+                }
             } else if (figure instanceof Rook && (figure.getColor() != color)) {
-                if (((Rook) figure).isRooksMoveCorrect(currentPositionOfKing))
+                if (((Rook) figure).isRooksMoveCorrect(currentPositionOfKing)) {
                     temp = ((Rook) figure).getRooksPositionsWhileMoving(currentPositionOfKing);
+                    canItBeCheck = true;
+                }
             } else if (figure instanceof King && (figure.getColor() != color)) {
                 if (((King) figure).isKingsMoveCorrect(currentPositionOfKing)) return true;
             } else if (figure instanceof Pawn && (figure.getColor() != color)) {
                 if (((Pawn) figure).isPawnsDiagonalMoveCorrect(currentPositionOfKing)) return true;
             } else if (figure instanceof Queen && (figure.getColor() != color))
-                if (((Queen) figure).isQueensMoveCorrect(currentPositionOfKing))
+                if (((Queen) figure).isQueensMoveCorrect(currentPositionOfKing)) {
                     temp = ((Queen) figure).getQueensPositionsWhileMoving(currentPositionOfKing);
+                    canItBeCheck = true;
+                }
         }
-        for (ChessPiece figure : getActiveFigures())
-            if (temp.contains(figure.getPosition()))
-                return false;
-        return true;
+        if (canItBeCheck) {
+            for (ChessPiece figure : getActiveFigures())
+                if (temp.contains(figure.getPosition()))
+                    return false;
+            return true;
+        }
+        return false;
     }
 }
