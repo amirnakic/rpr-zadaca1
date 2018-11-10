@@ -6,8 +6,8 @@ public class Pawn extends ChessPiece {
     }
 
     public void eat(String position) throws IllegalArgumentException, IllegalChessMoveException {
-        if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
-        else if (!isPawnsDiagonalMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
+        if (!checkPosition(position)) throw new IllegalArgumentException("Illegal move.");
+        else if (!isPawnsDiagonalMoveCorrect(position)) throw new IllegalChessMoveException("Illegal move.");
         else setPosition(position);
     }
 
@@ -51,8 +51,8 @@ public class Pawn extends ChessPiece {
 
     @Override
     public void move(String position) throws IllegalArgumentException, IllegalChessMoveException {
-        if (!checkPosition(position)) throw new IllegalArgumentException("Parameter is incorrect.");
-        else if (!isPawnsVerticalMoveCorrect(position)) throw new IllegalChessMoveException("Parameter is incorrect.");
+        if (!checkPosition(position)) throw new IllegalArgumentException("Illegal move.");
+        else if (!isPawnsVerticalMoveCorrect(position)) throw new IllegalChessMoveException("Illegal move.");
         else setPosition(position);
     }
 }

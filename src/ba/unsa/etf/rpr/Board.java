@@ -74,7 +74,7 @@ public class Board {
             if (figure.getClass() == type && figure.getColor() == color) {
                 if (figure instanceof King) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else if (((King) figure).isKingsMoveCorrect(position)) {
                         if (isMoveEatingMove(position, figure.getColor()) == 1) {
                             removeFigure(position);
@@ -87,7 +87,7 @@ public class Board {
                     }
                 } else if (figure instanceof Knight) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else if (((Knight) figure).isKnightsMoveCorrect(position)) {
                         if (isMoveEatingMove(position, figure.getColor()) == 1) {
                             removeFigure(position);
@@ -102,9 +102,9 @@ public class Board {
                     temp = ((Queen) figure).getQueensPositionsWhileMoving(position);
                     for (ChessPiece testFigure : getActiveFigures())
                         if (temp.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                            throw new IllegalChessMoveException("Illegal move.");
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else if (((Queen) figure).isQueensMoveCorrect(position)) {
                         if (isMoveEatingMove(position, figure.getColor()) == 0) {
                             figure.move(position);
@@ -119,9 +119,9 @@ public class Board {
                     temp = ((Rook) figure).getRooksPositionsWhileMoving(position);
                     for (ChessPiece testFigure : getActiveFigures())
                         if (temp.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                            throw new IllegalChessMoveException("Illegal move.");
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else if (((Rook) figure).isRooksMoveCorrect(position)) {
                         if (isMoveEatingMove(position, figure.getColor()) == 1) {
                             removeFigure(position);
@@ -136,9 +136,9 @@ public class Board {
                     temp = ((Bishop) figure).getBishopsPositionsWhileMoving(position);
                     for (ChessPiece testFigure : getActiveFigures())
                         if (temp.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                            throw new IllegalChessMoveException("Illegal move.");
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else if (((Bishop) figure).isBishopsMoveCorrect(position)) {
                         if (isMoveEatingMove(position, figure.getColor()) == 0) {
                             figure.move(position);
@@ -151,7 +151,7 @@ public class Board {
                     }
                 } else if (figure instanceof Pawn) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
-                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                        throw new IllegalChessMoveException("Illegal move.");
                     else {
                         if (((Pawn) figure).isPawnsVerticalMoveCorrect(position) && (isMoveEatingMove(position, figure.getColor()) == 0)) {
                             figure.move(position);
@@ -165,7 +165,7 @@ public class Board {
                 }
             }
         }
-        throw new IllegalChessMoveException("Parameter is incorrect.");
+        throw new IllegalChessMoveException("Illegal move.");
     }
 
     public void move(String oldPosition, String newPosition) throws IllegalArgumentException, IllegalChessMoveException {
@@ -176,7 +176,7 @@ public class Board {
                 this.move(figure.getClass(), figure.getColor(), newPosition);
                 return;
             }
-        throw new IllegalArgumentException("Parameter is incorrect.");
+        throw new IllegalArgumentException("Illegal move.");
     }
 
     public boolean isCheck(ChessPiece.Color color) {
