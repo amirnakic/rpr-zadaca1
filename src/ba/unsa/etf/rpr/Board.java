@@ -75,18 +75,30 @@ public class Board {
                 if (figure instanceof King || figure instanceof Knight) {
                     figure.move(position);
                 } else if (figure instanceof Queen) {
-                    figure.move(position);
-                    List<String> positions = ((Queen) figure).getQueensPositionsWhileMoving(position);
-                    for (ChessPiece testFigure : getActiveFigures()) {
-                        if (positions.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else if (((Queen) figure).isQueensMoveCorrect(position)) {
+                        if (isMoveEatingMove(position, figure.getColor()) == 0) {
+                            figure.move(position);
+                            return;
+                        } else {
+                            removeFigure(position);
+                            figure.move(position);
+                            return;
+                        }
                     }
                 } else if (figure instanceof Rook) {
-                    figure.move(position);
-                    List<String> positions = ((Rook) figure).getRooksPositionsWhileMoving(position);
-                    for (ChessPiece testFigure : getActiveFigures()) {
-                        if (positions.contains(testFigure.getPosition()))
-                            throw new IllegalChessMoveException("Parameter is incorrect.");
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else if (((Rook) figure).isRooksMoveCorrect(position)) {
+                        if (isMoveEatingMove(position, figure.getColor()) == 1) {
+                            removeFigure(position);
+                            figure.move(position);
+                            return;
+                        } else {
+                            figure.move(position);
+                            return;
+                        }
                     }
                 } else if (figure instanceof Bishop) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
