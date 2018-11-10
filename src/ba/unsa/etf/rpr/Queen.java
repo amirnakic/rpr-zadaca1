@@ -8,17 +8,19 @@ public class Queen extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isQueensMoveCorrect(String position) { //kraljica se krece u svim mogucim pravcima za neogranicen broj polja i pritom ne moze preskakati figure
+    //kraljica se krece u svim mogucim pravcima za neogranicen broj polja i pritom ne moze preskakati figure
+    public boolean isQueensMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
         int result1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
         int result2 = Math.abs((currentPosition.charAt(1) - '0') - (position.charAt(1) - '0'));
-        if (result1 == result2) return true; //dijagonalno kretanje
-        else if (result1 == 0 && result2 != 0) return true; //vertikalno kretanje
-        else if (result2 == 0 && result1 != 0) return true; //horizontalno kretanje
+        if (result1 == result2) return true;
+        else if (result1 == 0 && result2 != 0) return true;
+        else if (result2 == 0 && result1 != 0) return true;
         return false;
     }
 
+    //metoda vraca listu polja koja kraljica posjeti pri kretanju od pocetne do krajnje pozicije
     public List<String> getQueensPositionsWhileMoving(String position) {
         List<String> result = new ArrayList<>();
         String currentPosition = getPosition();

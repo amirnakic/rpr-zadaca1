@@ -8,7 +8,8 @@ public class Bishop extends ChessPiece {
         super(position, color);
     }
 
-    public boolean isBishopsMoveCorrect(String position) { //lovac se krece u svim mogucim dijagonalnim pravcima za neogranicen broj polja i pritom ne moze preskakati druge figure
+    //lovac se krece u svim mogucim dijagonalnim pravcima za neogranicen broj polja i pritom ne moze preskakati druge figure
+    public boolean isBishopsMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
         int result1 = Math.abs(currentPosition.charAt(0) - position.charAt(0));
@@ -17,6 +18,7 @@ public class Bishop extends ChessPiece {
         return false;
     }
 
+    //metoda vraca listu polja koja lovac posjeti tokom svog puta od pocetnog do krajnjeg polja
     public List<String> getBishopsPositionsWhileMoving(String position) {
         List<String> result = new ArrayList<>();
         String currentPosition = getPosition();

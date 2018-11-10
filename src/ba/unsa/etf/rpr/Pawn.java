@@ -5,12 +5,14 @@ public class Pawn extends ChessPiece {
         super(position, color);
     }
 
+    //zbog specificnosti pjesaka, proces jedenja druge figure ne mozemo realizirati preko metode move pa je zato tu ova metoda
     public void eat(String position) throws IllegalArgumentException, IllegalChessMoveException {
         if (!checkPosition(position)) throw new IllegalArgumentException("Illegal move.");
         else if (!isPawnsDiagonalMoveCorrect(position)) throw new IllegalChessMoveException("Illegal move.");
         else setPosition(position);
     }
 
+    //pjesak se krece dijagonalno prema naprijed za jedno polje kada njime zelimo pojesti drugu figuru
     public boolean isPawnsDiagonalMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
@@ -30,6 +32,7 @@ public class Pawn extends ChessPiece {
         return false;
     }
 
+    //pjesak se krece iskljucivo prema naprijed, i to za dva polja iz pocetne pozicije, odnosno jedno iz bilo koje druge
     public boolean isPawnsVerticalMoveCorrect(String position) {
         String currentPosition = getPosition();
         position = position.toUpperCase();
@@ -37,9 +40,9 @@ public class Pawn extends ChessPiece {
         int result2 = (currentPosition.charAt(1) - '0') - (position.charAt(1) - '0');
         if (getColor() == Color.WHITE) {
             if (result1 == 0 && result2 == -1)
-                return true; //iz bilo koje druge pozicije osim pocetne, pjeska se moze pomjerati samo za jedno mjesto iskljucivo prema naprijed
+                return true;
             else if ((currentPosition.charAt(1) - '0') == 2 && result1 == 0 && result2 == -2)
-                return true; //iz pocetne pozicije pjesak moze da se pomjeri za dva mjesta iskljucivo prema naprijed
+                return true;
         } else {
             if (result1 == 0 && result2 == 1)
                 return true;
