@@ -31,4 +31,10 @@ class PawnTest {
         Pawn p = new Pawn("d7", ChessPiece.Color.BLACK);
         assertThrows(IllegalChessMoveException.class, () -> p.eat("F5"));
     }
+
+    @Test
+    void eat3() {
+        Pawn p = new Pawn("d7", ChessPiece.Color.BLACK);
+        assertDoesNotThrow(() -> p.eat("c6"));
+    }
 }
