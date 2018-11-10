@@ -72,8 +72,32 @@ public class Board {
             ChessPiece figure = getActiveFigures().get(i);
             position = position.toUpperCase();
             if (figure.getClass() == type && figure.getColor() == color) {
-                if (figure instanceof King || figure instanceof Knight) {
-                    figure.move(position);
+                if (figure instanceof King) {
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else if (((King) figure).isKingsMoveCorrect(position)) {
+                        if (isMoveEatingMove(position, figure.getColor()) == 1) {
+                            removeFigure(position);
+                            figure.move(position);
+                            return;
+                        } else {
+                            figure.move(position);
+                            return;
+                        }
+                    }
+                } else if (figure instanceof Knight) {
+                    if (isMoveEatingMove(position, figure.getColor()) == -1)
+                        throw new IllegalChessMoveException("Parameter is incorrect.");
+                    else if (((Knight) figure).isKnightsMoveCorrect(position)) {
+                        if (isMoveEatingMove(position, figure.getColor()) == 1) {
+                            removeFigure(position);
+                            figure.move(position);
+                            return;
+                        } else {
+                            figure.move(position);
+                            return;
+                        }
+                    }
                 } else if (figure instanceof Queen) {
                     if (isMoveEatingMove(position, figure.getColor()) == -1)
                         throw new IllegalChessMoveException("Parameter is incorrect.");
