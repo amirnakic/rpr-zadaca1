@@ -14,4 +14,10 @@ class KnightTest {
         );
 
     }
+
+    @Test
+    void move1() {
+        Knight k = new Knight("b2", ChessPiece.Color.WHITE);
+        assertThrows(IllegalChessMoveException.class, () -> k.move("a5"));
+    }
 }
