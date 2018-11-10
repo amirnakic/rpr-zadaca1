@@ -80,6 +80,79 @@ public class Program {
                     System.out.println("Illegal move.");
                 }
             }
+            if (!correct) {
+                boolean correct2 = false;
+                while (!correct2) {
+                    System.out.println("Black move: ");
+                    input = s.nextLine();
+                    if (input.equals("X")) {
+                        correct2 = true;
+                        correct = true;
+                    } else if (input.length() == 3) {
+                        first = Character.toString(input.charAt(0));
+                        if ("KQRBN".contains(first)) {
+                            position = Character.toString(input.charAt(1)) + Character.toString(input.charAt(2));
+                            if (first.equals("K")) {
+                                try {
+                                    b.move(King.class, ChessPiece.Color.BLACK, position);
+                                    if (b.isCheck(ChessPiece.Color.WHITE))
+                                        System.out.println("CHECK!!!");
+                                    correct2 = true;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            } else if (first.equals("Q")) {
+                                try {
+                                    b.move(Queen.class, ChessPiece.Color.BLACK, position);
+                                    if (b.isCheck(ChessPiece.Color.WHITE))
+                                        System.out.println("CHECK!!!");
+                                    correct2 = true;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            } else if (first.equals("R")) {
+                                try {
+                                    b.move(Rook.class, ChessPiece.Color.BLACK, position);
+                                    if (b.isCheck(ChessPiece.Color.WHITE))
+                                        System.out.println("CHECK!!!");
+                                    correct2 = true;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            } else if (first.equals("B")) {
+                                try {
+                                    b.move(Bishop.class, ChessPiece.Color.BLACK, position);
+                                    if (b.isCheck(ChessPiece.Color.WHITE))
+                                        System.out.println("CHECK!!!");
+                                    correct2 = true;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            } else if (first.equals("N")) {
+                                try {
+                                    b.move(Knight.class, ChessPiece.Color.BLACK, position);
+                                    if (b.isCheck(ChessPiece.Color.WHITE))
+                                        System.out.println("CHECK!!!");
+                                    correct2 = true;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                        } else System.out.println("Illegal move.");
+                    } else if (input.length() == 2) {
+                        try {
+                            b.move(Pawn.class, ChessPiece.Color.BLACK, input);
+                            if (b.isCheck(ChessPiece.Color.WHITE))
+                                System.out.println("CHECK!!!");
+                            correct2 = true;
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Illegal move.");
+                    }
+                }
+            }
         }
     }
 }
