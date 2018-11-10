@@ -31,6 +31,7 @@ public abstract class ChessPiece {
     }
 
     public boolean checkPosition(String position) {
+        if (position.length() != 2) return false;
         char first = position.charAt(0);
         char second = position.charAt(1);
         if (("ABCDEFGHabcdefgh".indexOf(first) == -1) || ("12345678".indexOf(second) == -1))
