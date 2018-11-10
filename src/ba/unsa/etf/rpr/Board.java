@@ -45,16 +45,19 @@ public class Board {
         return activeFigures;
     }
 
+    //metoda vraca 0 ako je rijec o obicnom potezu - koji je korektan, ali ne jede drugu figuru
+    //metoda vraca 1 ako je rijec o potezu koji je korektan, i pritom pojede drugu figuru
+    //metoda vraca -1 ako je potrebno baciti izuzetak, iz bilo kojeg razloga koji znaci neispravnost poteza
     public int isMoveEatingMove(String position, ChessPiece.Color color) {
         position = position.toUpperCase();
         for (ChessPiece testFigure : getActiveFigures()) {
             if (testFigure.getPosition().equals(position)) {
                 if (testFigure.getColor() == color) {
-                    return -1; //vraca -1 ako nije rijec o eatingMove-u i ako treba baciti izuzetak
-                } else return 1; //vraca 1 ako je rijec o eatingMove-u
+                    return -1;
+                } else return 1;
             }
         }
-        return 0; //vraca 0 ako je rijec o obicnom Move-u
+        return 0;
     }
 
     public void removeFigure(String position) {
